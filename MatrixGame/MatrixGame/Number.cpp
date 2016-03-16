@@ -6,7 +6,7 @@ using namespace std;
 Number::Number()
 {
     int min = 0;
-    int max = 5;
+    int max = 6;
     isSelected = false;
     value = min + rand() % (max - min);
 }
