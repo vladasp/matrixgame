@@ -24,7 +24,9 @@ int main()
 
     //Calculation
     bestVariant = enterDataMatrix;
+    cout << "Start calculation" << endl;
     Calculation(enterDataMatrix);
+    cout << "End calculation" << endl;
 
     //Print all variants
     for each (Matrix matrix in variants)
@@ -86,17 +88,23 @@ void PrintMatrix(Matrix& enterDataMatrix)
 
 void Calculation(Matrix& enterDataMatrix)
 {
+    string score;
+    bool canMoove = true;
+    int currentX;
+    int currentY;
+
     for (int x = 0; x < enterDataMatrix.rows; x++)
     {
         for (int y = 0; y < enterDataMatrix.columns; y++)
         {
-            string score;
-            bool canMoove = true;
-            int currentX = x;
-            int currentY = y;
+            cout << "Itaration " << x << "." << y << endl;
+
+            currentX = x;
+            currentY = y;
+
             enterDataMatrix.numbers[x][y].isSelected = true;
             score += enterDataMatrix.numbers[x][y].value;
-            enterDataMatrix.sumScore += enterDataMatrix.numbers[x][x].value;
+            enterDataMatrix.sumScore += enterDataMatrix.numbers[x][y].value;
 
             while (canMoove && enterDataMatrix.sumScore >= 10)
             {
@@ -134,7 +142,7 @@ void Calculation(Matrix& enterDataMatrix)
                             //++
                             else
                             {
-                                currentX = (enterDataMatrix.numbers[currentX + 1][currentY].value < enterDataMatrix.numbers[currentX][currentY - 1].value) ? currentX + 1 : currentX;
+                                currentX = (enterDataMatrix.numbers[currentX + 1][currentY].value < enterDataMatrix.numbers[currentX][currentY + 1].value) ? currentX + 1 : currentX;
                                 currentY = (enterDataMatrix.numbers[currentX + 1][currentY].value < enterDataMatrix.numbers[currentX][currentY + 1].value) ? currentY : currentY + 1;
                             }
                         }
@@ -173,8 +181,8 @@ void Calculation(Matrix& enterDataMatrix)
                             && enterDataMatrix.numbers[currentX][currentY - 1].value != 0)
                         {
                             //+-
-                            currentX = (enterDataMatrix.numbers[currentX + 1][currentY].value < enterDataMatrix.numbers[currentX][currentY + 1].value) ? currentX + 1 : currentX;
-                            currentY = (enterDataMatrix.numbers[currentX - 1][currentY].value < enterDataMatrix.numbers[currentX][currentY + 1].value) ? currentY : currentY - 1;
+                            currentX = (enterDataMatrix.numbers[currentX + 1][currentY].value < enterDataMatrix.numbers[currentX][currentY - 1].value) ? currentX + 1 : currentX;
+                            currentY = (enterDataMatrix.numbers[currentX + 1][currentY].value < enterDataMatrix.numbers[currentX][currentY - 1].value) ? currentY : currentY - 1;
                             enterDataMatrix.numbers[currentX][currentY].isSelected = true;
                             score += enterDataMatrix.numbers[currentX][currentY].value;
                             enterDataMatrix.sumScore += enterDataMatrix.numbers[currentX][currentY].value;
@@ -222,7 +230,7 @@ void Calculation(Matrix& enterDataMatrix)
                         {
                             //-+
                             currentX = (enterDataMatrix.numbers[currentX - 1][currentY].value < enterDataMatrix.numbers[currentX][currentY + 1].value) ? currentX - 1 : currentX;
-                            currentY = (enterDataMatrix.numbers[currentX + 1][currentY].value < enterDataMatrix.numbers[currentX][currentY + 1].value) ? currentY : currentY + 1;
+                            currentY = (enterDataMatrix.numbers[currentX - 1][currentY].value < enterDataMatrix.numbers[currentX][currentY + 1].value) ? currentY : currentY + 1;
                             enterDataMatrix.numbers[currentX][currentY].isSelected = true;
                             score += enterDataMatrix.numbers[currentX][currentY].value;
                             enterDataMatrix.sumScore += enterDataMatrix.numbers[currentX][currentY].value;
@@ -316,7 +324,7 @@ void Calculation(Matrix& enterDataMatrix)
                         && enterDataMatrix.numbers[currentX][currentY - 1].value != 0)
                     {
                         //--
-                        if (enterDataMatrix.numbers[currentX - 1][currentY].value < enterDataMatrix.numbers[currentX - 1][currentY].value)
+                        if (enterDataMatrix.numbers[currentX - 1][currentY].value < enterDataMatrix.numbers[currentX + 1][currentY].value)
                         {
                             currentX = (enterDataMatrix.numbers[currentX - 1][currentY].value < enterDataMatrix.numbers[currentX][currentY - 1].value) ? currentX - 1 : currentX;
                             currentY = (enterDataMatrix.numbers[currentX - 1][currentY].value < enterDataMatrix.numbers[currentX][currentY - 1].value) ? currentY : currentY - 1;

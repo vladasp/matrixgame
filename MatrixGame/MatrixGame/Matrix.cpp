@@ -38,4 +38,15 @@ Matrix::Matrix(int x, int y)
     }
 }
 
+//void Matrix::FindVariants(int x, int y)
+//{
+//    string scoreStr;
+//    bool canMoove = true;
+//
+//    if (x != 0 && x != rows - 1 && y != 0 && y != columns - 1)
+//    {
+//        scoreStr += numbers[x][y].value;
+//    }
+//}
+
 

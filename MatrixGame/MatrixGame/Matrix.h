@@ -12,5 +12,6 @@ public:
     std:: vector<std::vector<Number>> numbers;
     int score;
     int sumScore;
+    //static void FindVariants(int x, int y);
 };
 
