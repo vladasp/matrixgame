@@ -1,6 +1,9 @@
 #pragma once
 #include "Number.h"
+#include <iostream>
 #include <vector>
+#include <string>
+
 
 class Matrix
 {
@@ -11,7 +14,10 @@ public:
     int columns;
     std:: vector<std::vector<Number>> numbers;
     int score;
+    std:: string scoreStr;
     int sumScore;
-    //static void FindVariants(int x, int y);
+    bool canMoove;
+
+    void FindVariants(std::vector<Matrix>& variants, Matrix& bestVariant, int x, int y);
 };
 
